@@ -152,13 +152,13 @@ const slides = [
             </p>
           </div>
         </div>
-        <div style={{ background: "#1e293b", borderRadius: "12px", padding: "20px", borderLeft: "4px solid #64748b" }}>
-          <p style={{ color: "#94a3b8", fontWeight: 600, fontSize: "1rem", margin: "0 0 8px" }}>
-            Agent 6 — LLM-as-Judge (Deferred)
+        <div style={{ background: "#1e293b", borderRadius: "12px", padding: "20px", borderLeft: "4px solid #60a5fa" }}>
+          <p style={{ color: "#60a5fa", fontWeight: 600, fontSize: "1rem", margin: "0 0 8px" }}>
+            Agent 6 — LLM-as-Judge (Upcoming)
           </p>
-          <p style={{ color: "#64748b", fontSize: "0.9rem", margin: 0 }}>
-            Holistic quality scoring needs production data runs to calibrate. Targeting 7.5/10 quality threshold.
-            Currently relying on deterministic eval rules (Agents 1+2+5) which catch structural issues but not prose quality.
+          <p style={{ color: "#94a3b8", fontSize: "0.9rem", margin: 0 }}>
+            Holistic quality scoring using LLM-as-judge rubric. Targeting 7.5/10 quality threshold.
+            Will complement deterministic eval rules (Agents 1+2+5) by assessing prose quality, coherence, and editorial tone.
           </p>
         </div>
         <div style={{ background: "#0f172a", borderRadius: "8px", padding: "16px", border: "1px dashed #334155", textAlign: "center" }}>
