@@ -76,7 +76,7 @@ const slides = [
             {
               label: "Agent 6",
               color: "#10b981",
-              stages: "Stage 10",
+              stages: "Stage 11",
               title: "Quality Judge",
               items: ["Scores agents 3-5", "Severity-aware scoring", "Avoids double penalties", "Final quality score 7.5/10"],
               note: "LLM-as-judge meta scoring",
