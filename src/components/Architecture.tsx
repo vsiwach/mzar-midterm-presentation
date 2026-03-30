@@ -93,6 +93,27 @@ export default function Architecture() {
 
           <div style={{ textAlign: "center", color: "#475569" }}>|</div>
 
+          {/* Agent 6 Block */}
+          <div style={{ background: "#111827", borderRadius: "12px", padding: "16px", border: "1px solid #10b981" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
+              <span style={{ color: "#34d399", fontWeight: 700 }}>Agent 6: Quality Judge</span>
+              <span style={{ color: "#475569", fontSize: "0.75rem" }}>Stage 10 | Holistic score</span>
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "6px" }}>
+              {[
+                "Scores agents 3-5 with severity-aware reasoning",
+                "Avoids double-penalizing downstream failures",
+                "Total score target: 7.5/10",
+              ].map((s) => (
+                <div key={s} style={{ background: "#0f2f1d", borderRadius: "6px", padding: "6px", textAlign: "center", fontSize: "0.7rem", color: "#86efac" }}>
+                  {s}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div style={{ textAlign: "center", color: "#475569" }}>|</div>
+
           {/* Output */}
           <div style={{ background: "#1e293b", borderRadius: "8px", padding: "14px 18px", border: "1px solid #34d399", textAlign: "center" }}>
             <span style={{ color: "#34d399", fontWeight: 700, fontSize: "0.95rem" }}>Final Report + Scorecard</span>

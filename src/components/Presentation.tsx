@@ -47,7 +47,7 @@ const slides = [
         <p style={{ fontSize: "1.15rem", color: "#e2e8f0", lineHeight: 1.6 }}>
           A <strong style={{ color: "#34d399" }}>6-agent evaluation pipeline</strong> built on BAM's private Assistants API:
         </p>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "16px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "16px" }}>
           {[
             {
               label: "Agent 3",
@@ -63,7 +63,7 @@ const slides = [
               stages: "Stages 5-9",
               title: "Report Generation",
               items: ["Planner: JSON plan", "4 parallel section writers", "Editor synthesizes + strips", "Guardrail pass/revise gate"],
-              note: "7 Claude assistants + 2 RAG stores",
+              note: "BAM ReportRunner: planner, writers, editor, guardrail",
             },
             {
               label: "Agents 1+2+5",
@@ -72,6 +72,14 @@ const slides = [
               title: "Evaluation Layer",
               items: ["Numeric transcription (+/-0.05)", "Section ordering check", "Market priority (primary first)", "Direction + BLUF coverage"],
               note: "Deterministic rules, no LLM needed",
+            },
+            {
+              label: "Agent 6",
+              color: "#10b981",
+              stages: "Stage 10",
+              title: "Quality Judge",
+              items: ["Scores agents 3-5", "Severity-aware scoring", "Avoids double penalties", "Final quality score 7.5/10"],
+              note: "LLM-as-judge meta scoring",
             },
           ].map((agent) => (
             <div
@@ -103,7 +111,7 @@ const slides = [
           <div style={{ background: "#1e293b", borderRadius: "8px", padding: "16px", border: "1px solid #334155" }}>
             <p style={{ color: "#60a5fa", fontWeight: 600, fontSize: "0.9rem", margin: "0 0 6px" }}>Data Strategy</p>
             <p style={{ color: "#94a3b8", fontSize: "0.85rem", margin: 0 }}>
-              Structured CSV data injected inline in prompts (never in vector stores). RAG reserved for domain knowledge only: power models, fuel-switch definitions, carbon research.
+              Structured CSV data injected inline in prompts (never in vector stores). `synthetic_data/` is schema-matched offline testing; `example_reports/` is confidential live BAM CSVs (gitignored). RAG reserved for domain knowledge only: power models, fuel-switch definitions, carbon research.
             </p>
           </div>
           <div style={{ background: "#1e293b", borderRadius: "8px", padding: "16px", border: "1px solid #334155" }}>
@@ -151,15 +159,6 @@ const slides = [
               "nothing happened today" gracefully instead of inventing narratives.
             </p>
           </div>
-        </div>
-        <div style={{ background: "#1e293b", borderRadius: "12px", padding: "20px", borderLeft: "4px solid #60a5fa" }}>
-          <p style={{ color: "#60a5fa", fontWeight: 600, fontSize: "1rem", margin: "0 0 8px" }}>
-            Agent 6 — LLM-as-Judge (Upcoming)
-          </p>
-          <p style={{ color: "#94a3b8", fontSize: "0.9rem", margin: 0 }}>
-            Holistic quality scoring using LLM-as-judge rubric. Targeting 7.5/10 quality threshold.
-            Will complement deterministic eval rules (Agents 1+2+5) by assessing prose quality, coherence, and editorial tone.
-          </p>
         </div>
         <div style={{ background: "#0f172a", borderRadius: "8px", padding: "16px", border: "1px dashed #334155", textAlign: "center" }}>
           <p style={{ color: "#60a5fa", fontSize: "1rem", margin: 0 }}>

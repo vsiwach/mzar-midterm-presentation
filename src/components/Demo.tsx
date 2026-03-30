@@ -135,7 +135,35 @@ export default function Demo() {
 
         {/* Right: Output */}
         <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-          {/* Planner Output */}
+          {/* Expert Evaluator Instructions */}
+          <div
+            style={{
+              background: "#111827",
+              borderRadius: "12px",
+              padding: "20px",
+              border: "1px solid #334155",
+              animation: "fadeIn 0.5s ease-in",
+              marginBottom: "16px",
+            }}
+          >
+            <h3 style={{ margin: "0 0 8px", fontSize: "0.9rem", color: "#34d399" }}>Expert Evaluator</h3>
+            <p style={{ color: "#94a3b8", fontSize: "0.8rem", margin: 0, lineHeight: 1.6 }}>
+              You are evaluating AI-generated energy market reports using structured agent_results from Agents 1–5. Base each score on the individual check details and severities, avoid double-penalizing downstream failures, and assign 0–2 points per agent.
+            </p>
+            <ul style={{ listStyle: "none", padding: 0, margin: "12px 0 0", display: "grid", gap: "6px" }}>
+              {[
+                "Agent 1: numeric accuracy + market priority",
+                "Agent 2: section order + required sections",
+                "Agent 3: transformation + evidence packaging",
+                "Agent 4: final markdown + guardrail outcome",
+                "Agent 5: direction, BLUF coverage, magnitude language",
+              ].map((item) => (
+                <li key={item} style={{ color: "#cbd5e1", fontSize: "0.75rem" }}>• {item}</li>
+              ))}
+            </ul>
+          </div>
+
+        {/* Planner Output */}
           {activeStage >= 4 && (
             <div
               style={{

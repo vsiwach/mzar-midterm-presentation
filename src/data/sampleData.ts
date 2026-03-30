@@ -35,6 +35,7 @@ export const evalScorecard = [
   { rule: "Direction Match", status: "pass" as const, detail: "'lower' aligns with negative z, 'higher' with positive" },
   { rule: "BLUF Coverage", status: "pass" as const, detail: "Top-3 primary movers by |z| appear in BLUF" },
   { rule: "Magnitude Language", status: "warning" as const, detail: "'sharply' used for |z| > 0.5 (advisory)" },
+  { rule: "Holistic Quality Score", status: "pass" as const, detail: "LLM judge target met with score above 7.5/10" },
 ];
 
 export const plannerSummary = `Three primary-market contracts dominate the snapshot by absolute Z-score: DEU DA20260126 (z = -13.10), EUA MM26 (z = -10.43), and TTF MN26 (z = +9.07). The four mandatory sections must be written in strict guidance order. All numeric claims must trace to source data within +/-0.05 units or +/-2%. The evidence pack for EUA and TTF causal drivers is weak — writers must flag explicitly rather than invent.`;
@@ -50,4 +51,5 @@ export const pipelineStages = [
   { id: 8, name: "Guardrail", agent: "Agent 4", desc: "Quality gate: pass/revise with revision instructions", status: "done" as const },
   { id: 9, name: "Renderer", agent: "Agent 4", desc: "Add title, reference date, footer -> final markdown", status: "done" as const },
   { id: 10, name: "Eval", agent: "Agents 1+2+5", desc: "Section order, market priority, numeric check, direction match", status: "done" as const },
+  { id: 11, name: "Judge", agent: "Agent 6", desc: "Holistic meta-score across all agents, severity-aware quality judgement", status: "done" as const },
 ];
