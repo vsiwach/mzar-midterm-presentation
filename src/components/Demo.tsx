@@ -179,7 +179,6 @@ export default function Demo() {
                     <span style={{ fontSize: "0.7rem", color: "#64748b" }}>{step.stage}</span>
                   </div>
                   <h4 style={{ margin: "10px 0 8px", fontSize: "0.95rem", color: "#e2e8f0" }}>{step.label}</h4>
-                  <p style={{ margin: "8px 0 0", fontSize: "0.75rem", color: "#cbd5e1", lineHeight: 1.4 }}>{step.note}</p>
                   {idx < 3 && (
                     <div style={{ position: "absolute", right: "-20px", top: "50%", transform: "translateY(-50%)", color: "#64748b", fontSize: "1.1rem" }}>→</div>
                   )}

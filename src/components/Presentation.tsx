@@ -11,15 +11,12 @@ const slides = [
           3 LLMs (Gemini, GPT-5, Claude) from identical structured CSV data.
         </p>
         <div style={{ background: "#1e293b", borderRadius: "12px", padding: "24px", border: "1px solid #334155" }}>
-          <p style={{ fontSize: "1.1rem", color: "#f87171", fontWeight: 600, marginBottom: "16px" }}>
-            ~88% numeric accuracy sounds good, but subtle failures slip through:
-          </p>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
             {[
-              ["Section ordering violations", "Models rearrange required market sequences (Power, Gas, Carbon, Coal)"],
-              ["Fabricated causal reasoning", "Models invent plausible explanations unsupported by provided data"],
-              ["Liquidity filter failures", "Illiquid products (sub-$2M daily volume) included despite instructions"],
-              ["Missing required subsections", "Forward curve analysis, spread commentary omitted"],
+              ["Section ordering", "Models rearrange required sequences (Power, Gas, Carbon, Coal)"],
+              ["Fabricated reasoning", "Plausible explanations invented without data support"],
+              ["Liquidity filter failures", "Illiquid products included despite instructions"],
+              ["Missing subsections", "Forward curve analysis, spread commentary omitted"],
             ].map(([title, desc]) => (
               <li key={title} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
                 <span style={{ color: "#f87171", fontSize: "1.2rem", flexShrink: 0 }}>x</span>
