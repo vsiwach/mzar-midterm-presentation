@@ -118,7 +118,7 @@ const slides = [
             </ul>
           </div>
           <div style={{ background: "#1e293b", borderRadius: "8px", padding: "16px", border: "1px solid #334155" }}>
-            <p style={{ color: "#34d399", fontWeight: 600, fontSize: "0.9rem", margin: "0 0 6px" }}>Defensive Fallbacks</p>
+            <p style={{ color: "#34d399", fontWeight: 600, fontSize: "0.9rem", margin: "0 0 6px" }}>Fallback Safety Net</p>
             <ul style={{ color: "#94a3b8", fontSize: "0.85rem", margin: 0, paddingLeft: "18px", lineHeight: 1.6 }}>
               <li>Planner: generate plan locally from task config, no LLM call</li>
               <li>Editor: concatenate section drafts directly</li>

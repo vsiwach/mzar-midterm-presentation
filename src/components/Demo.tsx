@@ -146,10 +146,6 @@ export default function Demo() {
               marginBottom: "16px",
             }}
           >
-            <h3 style={{ margin: "0 0 8px", fontSize: "0.9rem", color: "#34d399" }}>Expert Evaluator</h3>
-            <p style={{ color: "#94a3b8", fontSize: "0.8rem", margin: 0, lineHeight: 1.6 }}>
-              You are evaluating AI-generated energy market reports using structured agent_results from Agents 1–5. Base each score on the individual check details and severities, avoid double-penalizing downstream failures, and assign 0–2 points per agent.
-            </p>
             <div style={{ display: "flex", gap: "12px", overflowX: "auto", paddingTop: "12px" }}>
               {[
                 {
@@ -157,28 +153,24 @@ export default function Demo() {
                   stage: "Stages 0-3",
                   label: "Data Checks",
                   items: ["Verify CSV format", "Normalize records", "Rank top moves", "Collect evidence"],
-                  note: "Fast, local checks",
                 },
                 {
                   title: "Agent 4",
                   stage: "Stages 5-9",
                   label: "Report Writing",
                   items: ["Plan each section", "Write four drafts", "Merge into one report", "Run a quality gate"],
-                  note: "Generates clean output",
                 },
                 {
                   title: "Agents 1+2+5",
                   stage: "Stage 10",
                   label: "Rule Review",
                   items: ["Check numbers", "Check section order", "Check market focus", "Check direction language"],
-                  note: "Uses clear pass/fail rules",
                 },
                 {
                   title: "Agent 6",
                   stage: "Stage 11",
                   label: "Final Judge",
                   items: ["Score the report", "Weigh issues fairly", "Avoid repeat penalties", "Give a final quality mark"],
-                  note: "A final review step",
                 },
               ].map((step, idx) => (
                 <div key={step.title} style={{ minWidth: "220px", background: "#0f172a", border: "1px solid #334155", borderRadius: "12px", padding: "14px", flexShrink: 0, position: "relative" }}>
