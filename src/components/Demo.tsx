@@ -150,17 +150,50 @@ export default function Demo() {
             <p style={{ color: "#94a3b8", fontSize: "0.8rem", margin: 0, lineHeight: 1.6 }}>
               You are evaluating AI-generated energy market reports using structured agent_results from Agents 1–5. Base each score on the individual check details and severities, avoid double-penalizing downstream failures, and assign 0–2 points per agent.
             </p>
-            <ul style={{ listStyle: "none", padding: 0, margin: "12px 0 0", display: "grid", gap: "6px" }}>
+            <div style={{ display: "flex", gap: "12px", overflowX: "auto", paddingTop: "12px" }}>
               {[
-                "Agent 1: numeric accuracy + market priority",
-                "Agent 2: section order + required sections",
-                "Agent 3: transformation + evidence packaging",
-                "Agent 4: final markdown + guardrail outcome",
-                "Agent 5: direction, BLUF coverage, magnitude language",
-              ].map((item) => (
-                <li key={item} style={{ color: "#cbd5e1", fontSize: "0.75rem" }}>• {item}</li>
+                {
+                  title: "Agent 3",
+                  stage: "Stages 0-3",
+                  label: "Data Checks",
+                  items: ["Verify CSV format", "Normalize records", "Rank top moves", "Collect evidence"],
+                  note: "Fast, local checks",
+                },
+                {
+                  title: "Agent 4",
+                  stage: "Stages 5-9",
+                  label: "Report Writing",
+                  items: ["Plan each section", "Write four drafts", "Merge into one report", "Run a quality gate"],
+                  note: "Generates clean output",
+                },
+                {
+                  title: "Agents 1+2+5",
+                  stage: "Stage 10",
+                  label: "Rule Review",
+                  items: ["Check numbers", "Check section order", "Check market focus", "Check direction language"],
+                  note: "Uses clear pass/fail rules",
+                },
+                {
+                  title: "Agent 6",
+                  stage: "Stage 11",
+                  label: "Final Judge",
+                  items: ["Score the report", "Weigh issues fairly", "Avoid repeat penalties", "Give a final quality mark"],
+                  note: "A final review step",
+                },
+              ].map((step, idx) => (
+                <div key={step.title} style={{ minWidth: "220px", background: "#0f172a", border: "1px solid #334155", borderRadius: "12px", padding: "14px", flexShrink: 0, position: "relative" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "8px" }}>
+                    <span style={{ fontSize: "0.75rem", color: "#94a3b8", fontWeight: 700 }}>{step.title}</span>
+                    <span style={{ fontSize: "0.7rem", color: "#64748b" }}>{step.stage}</span>
+                  </div>
+                  <h4 style={{ margin: "10px 0 8px", fontSize: "0.95rem", color: "#e2e8f0" }}>{step.label}</h4>
+                  <p style={{ margin: "8px 0 0", fontSize: "0.75rem", color: "#cbd5e1", lineHeight: 1.4 }}>{step.note}</p>
+                  {idx < 3 && (
+                    <div style={{ position: "absolute", right: "-20px", top: "50%", transform: "translateY(-50%)", color: "#64748b", fontSize: "1.1rem" }}>→</div>
+                  )}
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
 
         {/* Planner Output */}

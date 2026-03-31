@@ -45,7 +45,7 @@ const slides = [
     content: (
       <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
         <p style={{ fontSize: "1.15rem", color: "#e2e8f0", lineHeight: 1.6 }}>
-          A <strong style={{ color: "#34d399" }}>6-agent evaluation pipeline</strong> built on BAM's private Assistants API:
+          A simple review pipeline that checks data, writes the report, and scores the final result.
         </p>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "16px" }}>
           {[
@@ -53,33 +53,33 @@ const slides = [
               label: "Agent 3",
               color: "#60a5fa",
               stages: "Stages 0-3",
-              title: "Transformation Validation",
-              items: ["CSV schema check", "Adapter output verification", "Z-score ranking", "Evidence pack routing"],
-              note: "Pure Python, instant, no API",
+              title: "Data Checks",
+              items: ["Verify CSV format", "Normalize records", "Rank top moves", "Collect evidence"],
+              note: "Fast, local checks",
             },
             {
               label: "Agent 4",
               color: "#a78bfa",
               stages: "Stages 5-9",
-              title: "Report Generation",
-              items: ["Planner: JSON plan", "4 parallel section writers", "Editor synthesizes + strips", "Guardrail pass/revise gate"],
-              note: "BAM ReportRunner: planner, writers, editor, guardrail",
+              title: "Report Writing",
+              items: ["Plan each section", "Write four drafts", "Merge into one report", "Run a quality gate"],
+              note: "Generates clean output",
             },
             {
               label: "Agents 1+2+5",
               color: "#34d399",
               stages: "Stage 10",
-              title: "Evaluation Layer",
-              items: ["Numeric transcription (+/-0.05)", "Section ordering check", "Market priority (primary first)", "Direction + BLUF coverage"],
-              note: "Deterministic rules, no LLM needed",
+              title: "Rule Review",
+              items: ["Check numbers", "Check section order", "Check market focus", "Check direction language"],
+              note: "Uses clear pass/fail rules",
             },
             {
               label: "Agent 6",
               color: "#10b981",
               stages: "Stage 11",
-              title: "Quality Judge",
-              items: ["Scores agents 3-5", "Severity-aware scoring", "Avoids double penalties", "Final quality score 7.5/10"],
-              note: "LLM-as-judge meta scoring",
+              title: "Final Judge",
+              items: ["Score the report", "Weigh issues fairly", "Avoid repeat penalties", "Give a final quality mark"],
+              note: "A final review step",
             },
           ].map((agent) => (
             <div
@@ -110,15 +110,20 @@ const slides = [
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
           <div style={{ background: "#1e293b", borderRadius: "8px", padding: "16px", border: "1px solid #334155" }}>
             <p style={{ color: "#60a5fa", fontWeight: 600, fontSize: "0.9rem", margin: "0 0 6px" }}>Data Strategy</p>
-            <p style={{ color: "#94a3b8", fontSize: "0.85rem", margin: 0 }}>
-              Structured CSV data injected inline in prompts (never in vector stores). `synthetic_data/` is schema-matched offline testing; `example_reports/` is confidential live BAM CSVs (gitignored). RAG reserved for domain knowledge only: power models, fuel-switch definitions, carbon research.
-            </p>
+            <ul style={{ color: "#94a3b8", fontSize: "0.85rem", margin: 0, paddingLeft: "18px", lineHeight: 1.6 }}>
+              <li>CSV data is passed inline in prompts; not stored in vector stores</li>
+              <li>Synthetic data is used for testing</li>
+              <li>Example BAM reports used to guide the output style</li>
+              <li>RAG is only used for domain knowledge</li>
+            </ul>
           </div>
           <div style={{ background: "#1e293b", borderRadius: "8px", padding: "16px", border: "1px solid #334155" }}>
             <p style={{ color: "#34d399", fontWeight: 600, fontSize: "0.9rem", margin: "0 0 6px" }}>Defensive Fallbacks</p>
-            <p style={{ color: "#94a3b8", fontSize: "0.85rem", margin: 0 }}>
-              {"Every BAM API call has a local fallback: planner \u2192 local synthesis, editor \u2192 concatenate drafts, guardrail \u2192 rule-based check."}
-            </p>
+            <ul style={{ color: "#94a3b8", fontSize: "0.85rem", margin: 0, paddingLeft: "18px", lineHeight: 1.6 }}>
+              <li>Planner: generate plan locally from task config, no LLM call</li>
+              <li>Editor: concatenate section drafts directly</li>
+              <li>Guardrail: rule-based check for required sections and non-empty report</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -126,43 +131,38 @@ const slides = [
   },
   // SLIDE 3: Biggest Unsolved Hurdle
   {
-    title: "Biggest Unsolved Hurdle",
+    title: "Biggest Unsolved Hurdles",
     content: (
       <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
         <div style={{ background: "#1e293b", borderRadius: "12px", padding: "24px", borderLeft: "4px solid #f87171" }}>
           <p style={{ color: "#f87171", fontWeight: 700, fontSize: "1.15rem", margin: "0 0 12px" }}>
-            RAG Evidence Quality
+            Evidence Gaps
           </p>
           <p style={{ color: "#cbd5e1", fontSize: "1rem", margin: 0, lineHeight: 1.6 }}>
-            Retrieval returns <strong>empty/weak results</strong> for causal drivers of top movers (DEU DA, EUA, TTF).
-            Writers must flag "no evidence available" instead of fabricating — but this degrades report quality.
-            The pipeline <em>correctly refuses to hallucinate</em>, which is the right behavior, but we need better
-            evidence to write richer reports.
+            There is still a lot of hallucination on both report generation and evaluation. The system can invent explanations and overstate confidence even when evidence is weak.
           </p>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
           <div style={{ background: "#1e293b", borderRadius: "12px", padding: "20px", borderLeft: "4px solid #f59e0b" }}>
             <p style={{ color: "#fbbf24", fontWeight: 600, fontSize: "1rem", margin: "0 0 8px" }}>
-              Async Ingestion Delays
+              Data Organization
             </p>
             <p style={{ color: "#94a3b8", fontSize: "0.9rem", margin: 0 }}>
-              BAM vector store batch ingestion takes <strong style={{ color: "#e2e8f0" }}>hours</strong>.
-              Hard to iterate quickly on knowledge base improvements. 20 files/hour rate limit on single-file endpoint.
+              Too many supporting CSVs and loose organization may worsen hallucinations.
             </p>
           </div>
           <div style={{ background: "#1e293b", borderRadius: "12px", padding: "20px", borderLeft: "4px solid #f59e0b" }}>
             <p style={{ color: "#fbbf24", fontWeight: 600, fontSize: "1rem", margin: "0 0 8px" }}>
-              Signal Weakness on Quiet Days
+              Data Fragmentation
             </p>
             <p style={{ color: "#94a3b8", fontSize: "0.9rem", margin: 0 }}>
-              Real production data sometimes has very weak z-scores (max |z| ~0.49). Pipeline must handle
-              "nothing happened today" gracefully instead of inventing narratives.
+              Many files and loose organization make manual checks time-consuming and error-prone.
             </p>
           </div>
         </div>
         <div style={{ background: "#0f172a", borderRadius: "8px", padding: "16px", border: "1px dashed #334155", textAlign: "center" }}>
           <p style={{ color: "#60a5fa", fontSize: "1rem", margin: 0 }}>
-            We'd love feedback on: How do you improve RAG retrieval for domain-specific causal reasoning when the knowledge base is sparse?
+            We'd love feedback on: reducing hallucination in generation and evaluation, especially when supporting data is fragmented and manual checks are costly.
           </p>
         </div>
       </div>

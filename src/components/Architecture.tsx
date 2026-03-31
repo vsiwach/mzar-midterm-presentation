@@ -17,8 +17,8 @@ export default function Architecture() {
           {/* Agent 3 Block */}
           <div style={{ background: "#172554", borderRadius: "12px", padding: "16px", border: "1px solid #1d4ed8" }}>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
-              <span style={{ color: "#60a5fa", fontWeight: 700 }}>Agent 3: Transformation</span>
-              <span style={{ color: "#475569", fontSize: "0.75rem" }}>Stages 0-3 | Pure Python</span>
+              <span style={{ color: "#60a5fa", fontWeight: 700 }}>Agent 3: Data Checks</span>
+              <span style={{ color: "#475569", fontSize: "0.75rem" }}>Stages 0-3 | Local validation</span>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "6px" }}>
               {["Schema", "Adapter", "Bundle", "Evidence"].map((s) => (
@@ -48,7 +48,7 @@ export default function Architecture() {
           {/* Agent 4 Block */}
           <div style={{ background: "#1e1b4b", borderRadius: "12px", padding: "16px", border: "1px solid #7c3aed" }}>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
-              <span style={{ color: "#a78bfa", fontWeight: 700 }}>Agent 4: Report Generation</span>
+              <span style={{ color: "#a78bfa", fontWeight: 700 }}>Agent 4: Report Writing</span>
               <span style={{ color: "#475569", fontSize: "0.75rem" }}>Stages 5-9 | BAM API</span>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
@@ -79,7 +79,7 @@ export default function Architecture() {
           {/* Agent 1+2+5 Block */}
           <div style={{ background: "#052e16", borderRadius: "12px", padding: "16px", border: "1px solid #16a34a" }}>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
-              <span style={{ color: "#34d399", fontWeight: 700 }}>Agents 1+2+5: Evaluation</span>
+              <span style={{ color: "#34d399", fontWeight: 700 }}>Agents 1+2+5: Rule Review</span>
               <span style={{ color: "#475569", fontSize: "0.75rem" }}>Stage 10 | Pure Python</span>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "6px" }}>
@@ -96,14 +96,14 @@ export default function Architecture() {
           {/* Agent 6 Block */}
           <div style={{ background: "#111827", borderRadius: "12px", padding: "16px", border: "1px solid #10b981" }}>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
-              <span style={{ color: "#34d399", fontWeight: 700 }}>Agent 6: Quality Judge</span>
-              <span style={{ color: "#475569", fontSize: "0.75rem" }}>Stage 10 | Holistic score</span>
+              <span style={{ color: "#34d399", fontWeight: 700 }}>Agent 6: Final Judge</span>
+              <span style={{ color: "#475569", fontSize: "0.75rem" }}>Stage 11 | Final judge</span>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "6px" }}>
               {[
                 "Scores agents 3-5 with severity-aware reasoning",
                 "Avoids double-penalizing downstream failures",
-                "Total score target: 7.5/10",
+                "Final quality mark for the full report",
               ].map((s) => (
                 <div key={s} style={{ background: "#0f2f1d", borderRadius: "6px", padding: "6px", textAlign: "center", fontSize: "0.7rem", color: "#86efac" }}>
                   {s}
